@@ -5,7 +5,8 @@ def get_dataset(opt):
     if opt.dataset == "hm3d":
         
         # basedir="./dataset_generation/"
-        basedir="/wudang_vuc_3dc_afs/chenzheng/dataset/"
+        # basedir="/wudang_vuc_3dc_afs/chenzheng/dataset/"
+        basedir="/scratch2/choi/data/splatter360_data/"
 
         opt.train_data_path = (
             basedir
@@ -38,7 +39,7 @@ def get_dataset(opt):
         )
 
         # used
-        basedir="/wudang_vuc_3dc_afs/chenzheng"
+        # basedir="/wudang_vuc_3dc_afs/chenzheng"
         opt.scenes_dir = basedir #"/checkpoint/ow045820/data/replica/"
     else:
         raise NotImplementedError

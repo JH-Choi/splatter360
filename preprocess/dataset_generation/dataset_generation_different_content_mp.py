@@ -24,6 +24,7 @@ from dataset_generation.interpolate_trajectory import path_to_poses, interpolate
 # this is update the path in opts
 from configs.options import get_dataset
 import multiprocessing
+import pdb
 
 
 def worker_func(opts, image_generator, samples_before_reset, \
@@ -232,6 +233,7 @@ def process_mp(dataset_name, split, root_dir, samples_before_reset, num_worker):
 
     # work_num
     root_dir = root_dir + "/" + opts.dataset + "_dataset/" + split # "./dataset_generation/hm3d_dataset_different"
+    print(f"root_dir: {root_dir}")
 
     image_generator = RandomImageGenerator(
         split,

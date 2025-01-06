@@ -15,15 +15,16 @@ import math
 down_rate = 1
 
 dataset_name = "hm3d"
-basedir = "/wudang_vuc_3dc_afs/chenzheng"
+basedir = "/scratch2/choi/data/splatter360_data/"
 dataset = dataset_name + "_dataset"
-output_basedir = "/wudang_vuc_3dc_afs/chenzheng/" + dataset + "_pt"
+output_basedir = "/scratch2/choi/data/splatter360_data/" + dataset + "_pt"
 
 INPUT_IMAGE_DIR = Path(basedir + "/" + dataset)
 OUTPUT_DIR = Path(output_basedir)
 
 # Target 100 MB per chunk.
-TARGET_BYTES_PER_CHUNK = int(1e8)
+# TARGET_BYTES_PER_CHUNK = int(1e8)
+TARGET_BYTES_PER_CHUNK = 0
 
 def get_rotation_x(angle, device='cuda:0'):
     angle = math.radians(angle)
@@ -99,16 +100,16 @@ def load_raw(path: Path) -> UInt8[Tensor, " length"]:
 #     """Load JPG images as raw bytes (do not decode)."""
 #     return {int(path.stem): load_raw(path) for path in example_path.iterdir()}
 
-# # TypedDict
-# class Metadata():
-#     url: str
-#     timestamps: Int[Tensor, "camera"]
-#     cameras: Float[Tensor, "camera entry"]
+# TypedDict
+class Metadata():
+    url: str
+    timestamps: Int[Tensor, "camera"]
+    cameras: Float[Tensor, "camera entry"]
 
 
-# class Example(Metadata):
-#     key: str
-#     images: list[UInt8[Tensor, "..."]]
+class Example(Metadata):
+    key: str
+    images: list[UInt8[Tensor, "..."]]
 
 # def load_metadata(example_path: Path) :
 #     # data = torch.load(example_path)

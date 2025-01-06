@@ -1,0 +1,3 @@
+-e git+https://github.com/facebookresearch/habitat-lab.git@0f454f62e41050bc90ca468c62db35d7484923ff#egg=habitat
+-e git+https://github.com/facebookresearch/habitat-lab.git@afe4058a7f8aa5ab71a133575cdaa79f0308af6a#egg=habitat_lab&subdirectory=habitat-lab
+habitat-sim==0.2.2

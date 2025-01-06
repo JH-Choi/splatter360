@@ -3,9 +3,11 @@ from pathlib import Path
 import torch
 from tqdm import tqdm
 
-dataset_name = "replica_dataset_pt"
+# dataset_name = "replica_dataset_pt"
+dataset_name = "hm3d_dataset_pt"
 
-DATASET_PATH = Path("/wudang_vuc_3dc_afs/chenzheng/" + dataset_name + "/")
+# DATASET_PATH = Path("/wudang_vuc_3dc_afs/chenzheng/" + dataset_name + "/")
+DATASET_PATH = Path("/scratch2/choi/data/splatter360_data/" + dataset_name + "/")
 
 if __name__ == "__main__":
     for stage in DATASET_PATH.iterdir():

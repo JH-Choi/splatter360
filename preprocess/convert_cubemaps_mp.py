@@ -15,8 +15,8 @@ import math
 import multiprocessing
 
 down_rate = 1
-dataset_name = "replica"
-basedir = "/wudang_vuc_3dc_afs/chenzheng"
+dataset_name = "hm3d"
+basedir = "/scratch2/choi/data/splatter360_data/"
 dataset = dataset_name + "_dataset"
 INPUT_IMAGE_DIR = Path(basedir + "/" + dataset)
 
@@ -215,7 +215,7 @@ if __name__ == "__main__":
         "width": 1024,
     }
 
-    stage = "test"
+    stage = "train"
     keys = sorted(os.listdir(INPUT_IMAGE_DIR / stage))
     num_worker = 32
     processes = []

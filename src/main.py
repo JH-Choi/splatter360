@@ -17,6 +17,7 @@ from pytorch_lightning.callbacks import (
 # from pytorch_lightning.loggers.wandb import WandbLogger
 import pytorch_lightning as pl
 from skimage.io import imsave
+import pdb
 
 # Configure beartype and jaxtyping.
 with install_import_hook(

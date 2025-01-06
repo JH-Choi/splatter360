@@ -12,7 +12,9 @@
 #     dataset.view_sampler.index_path="assets/evaluation_index_replica.json"
 
 output_dir="./outputs/splat360_log_depth_near0.1-100k/"
-checkpoint_path="$output_dir/checkpoints/last.ckpt"
+# checkpoint_path="$output_dir/checkpoints/last.ckpt"
+# checkpoint_path="/scatch2/choi/code/gaussian_splatting/splatter360/checkpoints/hm3d.ckpt"
+checkpoint_path="./checkpoints/hm3d.ckpt"
 CUDA_VISIBLE_DEVICES=0 python -m src.main \
     +experiment=hm3d \
     model.encoder.shim_patch_size=8 \

@@ -35,7 +35,6 @@ def _load_datasets(config_keys, dataset, data_path, scenes_path, num_workers):
           )
       ]
 
-      # import pdb;pdb.set_trace()
       for episode_id in range(0, len(dataset_new.episodes)):
         if 'replica' in dataset_new.episodes[episode_id].scene_id:
           dataset_new.episodes[episode_id].scene_id = \
@@ -46,11 +45,17 @@ def _load_datasets(config_keys, dataset, data_path, scenes_path, num_workers):
           # dataset.episodes[i].scene_id = dataset.episodes[i].scene_id.replace(
           # '/checkpoint/ow045820/data/replica/',
           # scenes_path)
-        elif 'mp3d' in dataset.episodes[i].scene_id:
+        elif 'mp3d' in dataset.episodes[episode_id].scene_id:
           dataset_new.episodes[episode_id].scene_id = \
             dataset_new.episodes[episode_id].scene_id.replace(
               '/checkpoint/erikwijmans/data/mp3d/',
               scenes_path)
+        elif 'hm3d' in dataset_new.episodes[episode_id].scene_id:
+          dataset_new.episodes[episode_id].scene_id = dataset_new.episodes[episode_id].scene_id.replace(
+            '/wudang_vuc_3dc_afs/chenzheng/dataset/hm3d/',
+             scenes_path)
+        print("scene_id:", dataset_new.episodes[episode_id].scene_id)
+        assert os.path.exists(dataset_new.episodes[episode_id].scene_id)
 
     config.SIMULATOR.SCENE = str(dataset_new.episodes[0].scene_id)
     config.freeze()
@@ -112,7 +117,7 @@ class RandomImageGenerator(object):
       data_path = opts.test_data_path
     else:
       raise Exception("Invalid split")
-    
+
     unique_dataset_name = opts.dataset
 
     self.num_parallel_envs = num_parallel_envs #1
@@ -179,10 +184,15 @@ class RandomImageGenerator(object):
             '/checkpoint/erikwijmans/data/mp3d/',
             opts.scenes_dir + '/mp3d/')
         elif 'hm3d' in dataset.episodes[i].scene_id:
-          pass
+          dataset.episodes[i].scene_id = dataset.episodes[i].scene_id.replace(
+            '/wudang_vuc_3dc_afs/chenzheng/dataset/hm3d/',
+            opts.scenes_dir + 'dataset/hm3d/')
+          # print("scene_id:", dataset.episodes[i].scene_id)
+          # assert os.path.exists(dataset.episodes[i].scene_id)
         else:
           raise NotImplementedError
           
+        assert os.path.exists(dataset.episodes[i].scene_id)
 
 
     config.TASK.SENSORS = ["POINTGOAL_SENSOR"]
@@ -194,7 +204,9 @@ class RandomImageGenerator(object):
 
     # Now look at vector environments
     if self.vectorize:
-      datadir = opts.scenes_dir + "/" + opts.dataset + "/"
+      # datadir = opts.scenes_dir + "/" + opts.dataset + "/"
+      datadir = opts.scenes_dir + "dataset/" + opts.dataset + "/"
+      # datadir = opts.scenes_dir + "dataset/" + opts.dataset + "/"
       print("len(dataset.episodes):",len(dataset.episodes) )
       configs, datasets = _load_datasets(
         (

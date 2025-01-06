@@ -40,8 +40,8 @@ loss:
 dataset: 
   image_shape: [512, 1024]
   # roots: [datasets/re10k]
-  roots: [/wudang_vuc_3dc_afs/chenzheng/hm3d_dataset_pt]
-  rgb_roots: [ /wudang_vuc_3dc_afs/chenzheng/hm3d_dataset]  
+  roots: [/scratch2/choi/data/splatter360_data/hm3d/hm3d_dataset_pt]
+  rgb_roots: [ /scratch2/choi/data/splatter360_data/hm3d/hm3d_dataset]  
 
   near: 0.1
   far: 10.0  
